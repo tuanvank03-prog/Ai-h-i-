@@ -1,0 +1,275 @@
+-- 🔥 ĐẠT HUD
+-- 🍌 Nút mở/đóng + kéo được
+-- 📱 Menu vuốt lên/xuống
+-- 🖐️ Menu kéo được
+-- 🌈 Viền RGB
+
+local Players = game:GetService("Players")
+local UIS = game:GetService("UserInputService")
+local RunService = game:GetService("RunService")
+
+local Player = Players.LocalPlayer
+local PlayerGui = Player:WaitForChild("PlayerGui")
+
+local Old = PlayerGui:FindFirstChild("DatHUD")
+if Old then
+    Old:Destroy()
+end
+
+local Gui = Instance.new("ScreenGui")
+Gui.Name = "DatHUD"
+Gui.ResetOnSpawn = false
+Gui.Parent = PlayerGui
+
+-- 🍌 NÚT MENU
+local MenuButton = Instance.new("TextButton")
+MenuButton.Size = UDim2.new(0,55,0,55)
+MenuButton.Position = UDim2.new(0,20,0.5,-25)
+MenuButton.BackgroundColor3 = Color3.fromRGB(255,190,0)
+MenuButton.Text = "🍌"
+MenuButton.TextSize = 30
+MenuButton.BorderSizePixel = 0
+MenuButton.Parent = Gui
+
+local BananaCorner = Instance.new("UICorner")
+BananaCorner.CornerRadius = UDim.new(1,0)
+BananaCorner.Parent = MenuButton
+
+-- 🔥 KHUNG MENU
+local Main = Instance.new("Frame")
+Main.Size = UDim2.new(0,310,0,380)
+Main.Position = UDim2.new(0.5,-155,0.5,-190)
+Main.BackgroundColor3 = Color3.fromRGB(25,25,25)
+Main.BorderSizePixel = 0
+Main.Visible = false
+Main.Parent = Gui
+
+local MainCorner = Instance.new("UICorner")
+MainCorner.CornerRadius = UDim.new(0,14)
+MainCorner.Parent = Main
+
+-- 🔥 TIÊU ĐỀ
+local Title = Instance.new("TextLabel")
+Title.Size = UDim2.new(1,0,0,45)
+Title.BackgroundColor3 = Color3.fromRGB(40,40,40)
+Title.Text = "🔥 ĐẠT HUD"
+Title.TextColor3 = Color3.new(1,1,1)
+Title.TextSize = 20
+Title.BorderSizePixel = 0
+Title.Parent = Main
+
+local TitleCorner = Instance.new("UICorner")
+TitleCorner.CornerRadius = UDim.new(0,14)
+TitleCorner.Parent = Title
+
+-- 📜 KHU VỰC CUỘN
+local Scroll = Instance.new("ScrollingFrame")
+Scroll.Size = UDim2.new(1,-10,1,-55)
+Scroll.Position = UDim2.new(0,5,0,50)
+Scroll.BackgroundTransparency = 1
+Scroll.BorderSizePixel = 0
+Scroll.ScrollBarThickness = 5
+Scroll.CanvasSize = UDim2.new(0,0,0,540)
+Scroll.ScrollingDirection = Enum.ScrollingDirection.Y
+Scroll.Parent = Main
+
+-- 🔘 TẠO NÚT
+local function Button(Name,X,Y,URL)
+
+    local B = Instance.new("TextButton")
+    B.Size = UDim2.new(0,140,0,48)
+    B.Position = UDim2.new(0,X,0,Y)
+    B.BackgroundColor3 = Color3.fromRGB(50,50,50)
+    B.TextColor3 = Color3.new(1,1,1)
+    B.TextSize = 14
+    B.TextWrapped = true
+    B.Text = Name
+    B.BorderSizePixel = 0
+    B.Parent = Scroll
+
+    local Corner = Instance.new("UICorner")
+    Corner.CornerRadius = UDim.new(0,9)
+    Corner.Parent = B
+
+    B.MouseButton1Click:Connect(function()
+        task.spawn(function()
+            pcall(function()
+                local Code = game:HttpGet(URL)
+                local Func = loadstring(Code)
+
+                if Func then
+                    Func()
+                end
+            end)
+        end)
+    end)
+end
+
+-- 📜 CÁC SCRIPT
+Button("🖱️ Auto Click",10,10,
+"https://pastefy.app/8MDGchxw/raw")
+
+Button("🕺 Chuyển động",160,10,
+"https://raw.githubusercontent.com/7yd7/Hub/refs/heads/Branch/GUIS/Emotes.lua")
+
+Button("🎨 Đồ họa",10,65,
+"https://raw.githubusercontent.com/randomstring0/pshade-ultimate/refs/heads/main/src/cd.lua")
+
+Button("🎯 Aim đầu",160,65,
+"https://rawscripts.net/raw/Universal-Script-Aimbot-Mobile-34677")
+
+Button("🧩 Tổng hợp",10,120,
+"https://raw.githubusercontent.com/luuanhduc160-cmyk/Ultimate/refs/heads/main/ultimate.lua")
+
+Button("🎯 Hixbox",160,120,
+"https://pastefy.app/ItfO0tdg/raw")
+
+Button("🔵 Hixbox Blue Lock",10,175,
+"https://raw.githubusercontent.com/RedJDarks/MAIN/refs/heads/main/HitboxExpander")
+
+Button("🔒 Siplock",160,175,
+"https://rawscripts.net/raw/Universal-Script-Shift-Lock-For-Mobile-Remade-Definitive-241711")
+
+Button("👁️ POV",10,230,
+"https://gist.githubusercontent.com/phamtrnguyen2014haha-sketch/3bdad2abfa56ce1d2dcf2ff5188a270b/raw")
+
+Button("🎵 Nhạc",160,230,
+"https://rawscripts.net/raw/Universal-Script-YouTube-music-Player-110035")
+
+-- 🛠️ F3X
+local F3X = Instance.new("TextButton")
+F3X.Size = UDim2.new(0,140,0,48)
+F3X.Position = UDim2.new(0,10,0,285)
+F3X.BackgroundColor3 = Color3.fromRGB(50,50,50)
+F3X.TextColor3 = Color3.new(1,1,1)
+F3X.TextSize = 14
+F3X.Text = "🛠️ F3X"
+F3X.BorderSizePixel = 0
+F3X.Parent = Scroll
+
+local F3XCorner = Instance.new("UICorner")
+F3XCorner.CornerRadius = UDim.new(0,9)
+F3XCorner.Parent = F3X
+
+F3X.MouseButton1Click:Connect(function()
+    pcall(function()
+        local Obj = game:GetObjects("rbxassetid://6695644299")[1]
+
+        if Obj and Obj.Source then
+            loadstring(Obj.Source)()
+        end
+    end)
+end)
+
+-- 🧱 WALLHOP
+Button("🧱 WallHop",160,285,
+"https://raw.githubusercontent.com/ScpGuest666/Random-Roblox-script/refs/heads/main/Roblox%20WallHop%20V4%20script")
+
+-- 🌈 VIỀN RGB
+local function RainbowBorder(Object,Thickness)
+
+    local Stroke = Instance.new("UIStroke")
+    Stroke.Thickness = Thickness or 3
+    Stroke.Parent = Object
+
+    local Hue = 0
+
+    RunService.RenderStepped:Connect(function(dt)
+        Hue = (Hue + dt * 0.25) % 1
+        Stroke.Color = Color3.fromHSV(Hue,1,1)
+    end)
+end
+
+RainbowBorder(Main,3)
+RainbowBorder(MenuButton,3)
+
+-- 🍌 KÉO NÚT
+local BananaDragging = false
+local BananaDragStart
+local BananaStartPos
+
+MenuButton.InputBegan:Connect(function(input)
+
+    if input.UserInputType == Enum.UserInputType.MouseButton1
+    or input.UserInputType == Enum.UserInputType.Touch then
+
+        BananaDragging = true
+        BananaDragStart = input.Position
+        BananaStartPos = MenuButton.Position
+    end
+end)
+
+UIS.InputChanged:Connect(function(input)
+
+    if BananaDragging and (
+        input.UserInputType == Enum.UserInputType.MouseMovement
+        or input.UserInputType == Enum.UserInputType.Touch
+    ) then
+
+        local Delta = input.Position - BananaDragStart
+
+        MenuButton.Position = UDim2.new(
+            BananaStartPos.X.Scale,
+            BananaStartPos.X.Offset + Delta.X,
+            BananaStartPos.Y.Scale,
+            BananaStartPos.Y.Offset + Delta.Y
+        )
+    end
+end)
+
+UIS.InputEnded:Connect(function(input)
+
+    if input.UserInputType == Enum.UserInputType.MouseButton1
+    or input.UserInputType == Enum.UserInputType.Touch then
+
+        BananaDragging = false
+    end
+end)
+
+-- 🍌 MỞ / ĐÓNG
+MenuButton.MouseButton1Click:Connect(function()
+    Main.Visible = not Main.Visible
+end)
+
+-- 🖐️ KÉO MENU BẰNG TIÊU ĐỀ
+local Dragging = false
+local DragStart
+local StartPos
+
+Title.InputBegan:Connect(function(input)
+
+    if input.UserInputType == Enum.UserInputType.MouseButton1
+    or input.UserInputType == Enum.UserInputType.Touch then
+
+        Dragging = true
+        DragStart = input.Position
+        StartPos = Main.Position
+    end
+end)
+
+UIS.InputChanged:Connect(function(input)
+
+    if Dragging and (
+        input.UserInputType == Enum.UserInputType.MouseMovement
+        or input.UserInputType == Enum.UserInputType.Touch
+    ) then
+
+        local Delta = input.Position - DragStart
+
+        Main.Position = UDim2.new(
+            StartPos.X.Scale,
+            StartPos.X.Offset + Delta.X,
+            StartPos.Y.Scale,
+            StartPos.Y.Offset + Delta.Y
+        )
+    end
+end)
+
+UIS.InputEnded:Connect(function(input)
+
+    if input.UserInputType == Enum.UserInputType.MouseButton1
+    or input.UserInputType == Enum.UserInputType.Touch then
+
+        Dragging = false
+    end
+end)
